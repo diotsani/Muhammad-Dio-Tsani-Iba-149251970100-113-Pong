@@ -1442,7 +1442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftScore: 0
   rightScore: 0
-  maxScore: 99
+  maxScore: 3
   panelGameOver: {fileID: 1491613045}
   ball: {fileID: 735133179}
 --- !u!4 &1957043834
