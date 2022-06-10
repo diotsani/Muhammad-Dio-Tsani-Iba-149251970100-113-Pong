@@ -8,4 +8,3 @@ Build/*
 .vsconfig 
 *.sln 
 *.csproj 
-BuildPlayable/*
