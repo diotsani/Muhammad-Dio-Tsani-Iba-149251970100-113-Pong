@@ -17,7 +17,7 @@ public class MainMenuController : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Loading");
     }
 
     public void OpenAuthor()

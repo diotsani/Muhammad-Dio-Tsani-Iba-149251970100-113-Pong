@@ -10,7 +10,8 @@ public class ScoreManager : MonoBehaviour
     
     public int maxScore;
 
-    public GameObject panelGameOver;
+    public GameObject panelGameOver_1;
+    public GameObject panelGameOver_2;
 
     public BallController ball;
 
@@ -28,11 +29,11 @@ public class ScoreManager : MonoBehaviour
     public void AddRightScore(int increment)
     {
         rightScore += increment;
-        ball.ResetBall();
+        ball.ResetBallRight();
 
-        if(rightScore >= maxScore)
+        if (rightScore >= maxScore)
         {
-            GameOver();
+            GameOverRedTim();
             StartCoroutine(DelayGameOver());
         }
     }
@@ -40,24 +41,30 @@ public class ScoreManager : MonoBehaviour
     public void AddLeftScore(int increment)
     {
         leftScore += increment;
-        ball.ResetBall();
+        ball.ResetBallLeft();
 
         if (leftScore >= maxScore)
         {
-            GameOver();
+            GameOverBlueTim();
             StartCoroutine(DelayGameOver());
         }
     }
 
-    public void GameOver()
+    public void GameOverBlueTim()
     {
-        panelGameOver.SetActive(true);
+        panelGameOver_1.SetActive(true);
         
+    }
+
+    public void GameOverRedTim()
+    {
+        panelGameOver_2.SetActive(true);
+
     }
 
     IEnumerator DelayGameOver()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("MainMenu");
     }
 }
