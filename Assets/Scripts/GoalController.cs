@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GoalController : MonoBehaviour
 {
+    [Header("Collison Ball")]
     public Collider2D ball;
+    public GameObject ballDupe;
+
     public bool isRight;
     public ScoreManager manager;
 
@@ -18,7 +21,10 @@ public class GoalController : MonoBehaviour
 
     void Update()
     {
-        
+        if (ballDupe == null)
+        {
+            ballDupe = GameObject.FindWithTag("BallDupe");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,6 +36,25 @@ public class GoalController : MonoBehaviour
                 manager.AddRightScore(1);
                 FloatGoal1();
                 
+            }
+            else
+            {
+                manager.AddLeftScore(1);
+                FloatGoal2();
+            }
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "BallDupe")
+        {
+            Debug.Log("BallDupe");
+            if (isRight)
+            {
+                manager.AddRightScore(1);
+                FloatGoal1();
+
             }
             else
             {

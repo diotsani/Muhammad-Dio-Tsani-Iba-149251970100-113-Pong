@@ -13,7 +13,9 @@ public class ScoreManager : MonoBehaviour
     public GameObject panelGameOver_1;
     public GameObject panelGameOver_2;
 
+    [Header("Ball")]
     public BallController ball;
+    public GameObject ballDupe;
 
     void Start()
     {
@@ -23,13 +25,22 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (ballDupe == null)
+        {
+            ballDupe = GameObject.FindWithTag("BallDupe");
+            
+        }
     }
 
     public void AddRightScore(int increment)
     {
         rightScore += increment;
         ball.ResetBallRight();
+
+        if (ballDupe != null)
+        {
+            ballDupe.GetComponent<BallDuplicate>().DestroyBall();
+        }
 
         if (rightScore >= maxScore)
         {
@@ -42,6 +53,11 @@ public class ScoreManager : MonoBehaviour
     {
         leftScore += increment;
         ball.ResetBallLeft();
+
+        if (ballDupe != null)
+        {
+            ballDupe.GetComponent<BallDuplicate>().DestroyBall();
+        }
 
         if (leftScore >= maxScore)
         {
