@@ -11,6 +11,16 @@ public class PaddleController : MonoBehaviour
     public KeyCode upKey;
     public KeyCode downKey;
 
+    public GameObject obj;
+    public bool isLeftPaddle;
+    public bool isRightPaddle;
+
+    //Power Up Paddle---------------------------------
+    private float timerEffect = 0f;
+    private float durationLongUp = 5f;
+    private Vector3 normalScale = new Vector3(0.5f, 2f, 1f);
+    private Vector3 longUpScale = new Vector3(0.5f, 4f, 1f);
+
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -21,6 +31,9 @@ public class PaddleController : MonoBehaviour
         Vector3 movement = GetInput();
 
         MoveObject(GetInput());
+
+
+        RemoveEffect();
     }
 
     private Vector2 GetInput()
@@ -44,4 +57,39 @@ public class PaddleController : MonoBehaviour
         Debug.Log("TEST:" + movement);
         rig.velocity = movement;
     }
+
+    public void ActivateLongUpEffect()
+    {
+        obj.transform.localScale = longUpScale;
+    }
+
+    public void RemoveEffect()
+    {
+        if(obj.transform.localScale.y >= 4)
+        {
+            //Invoke("NormalEffect", 5);
+            timerEffect += Time.deltaTime;
+            if(timerEffect >= durationLongUp)
+            { 
+                obj.transform.localScale = normalScale;
+                Debug.Log("5 Seconds");
+                timerEffect -= durationLongUp;
+            }
+        }
+        if(speed == 8)
+        {
+            timerEffect += Time.deltaTime;
+            if (timerEffect >= durationLongUp)
+            {
+                speed /= 2;
+                Debug.Log("5 Seconds");
+                timerEffect -= durationLongUp;
+            }
+        }
+    }
+    public void NormalEffect()
+    {
+        obj.transform.localScale = normalScale;
+    }
+    
 }
