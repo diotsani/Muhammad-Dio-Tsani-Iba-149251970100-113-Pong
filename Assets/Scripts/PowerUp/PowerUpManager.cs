@@ -7,7 +7,7 @@ public class PowerUpManager : MonoBehaviour
     public int maxPowerUpAmount;
     public List<GameObject> powerUpTemplateList;
 
-    private List<GameObject> powerUpList;
+    public List<GameObject> powerUpList;
 
     public Transform spawnArea;
     public Vector2 powerUpAreaMax;
